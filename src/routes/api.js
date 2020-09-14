@@ -3,13 +3,14 @@ const express = require('express');
 const City = require('../db/models/City');
 const geocode = require('../utils/geocode.service');
 const forecast = require('../utils/forecast.service');
+const { deleteMany } = require('../db/models/City');
 
 const router = new express.Router;
 
 router.get('/city/:cityName', async (req, res) => {
 
     try {
-        const cityName = req.params.cityName.toLowerCase();
+        const cityName = req.params.cityName.toLowerCase().replace(' ', '-');
         const { coordinates, placeName } = await geocode(cityName);
         const { temp, feelsLike, weatherDescription, weatherIcon } = await forecast(coordinates);
 
@@ -46,7 +47,9 @@ router.post('/city', async (req, res) => {
     try {
         const city = new City(req.body);
 
+        await City.deleteMany({ name: city.name });
         await city.save();
+
         return res.status(201).send(city)
 
     } catch (error) {

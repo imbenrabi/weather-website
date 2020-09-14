@@ -1,8 +1,6 @@
 const path = require('path');
 const webpack = require("webpack")
 
-console.log(path.join(__dirname, './node_modules/axios/dist/axios.js'));
-
 module.exports = {
 
     mode: 'development',

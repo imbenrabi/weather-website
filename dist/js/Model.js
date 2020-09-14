@@ -8,22 +8,41 @@ export class Model {
 
     async getDataFromDB() {
         try {
-            const resp = await axios.get('/cities')
+            const resp = await axios.get('/cities');
+
             this.cityData = resp.data;
+
+            return resp.status;
         } catch (error) {
             return error
         }
     }
 
     async getCityData(cityName) {
-        //which sends a GET request to the /city route on your server
+        try {
+            const resp = await axios.get(`city/${cityName}`);
+
+            return resp.data;
+
+        } catch (error) {
+            return error
+        }
+
     }
 
     async saveCity(city) {
         try {
             const resp = await axios.post('/city', city);
+            const cityIndex = this.cityData.findIndex(c => c.name === resp.data.name);
 
-            this.tasks.push(resp.data);//make sure there are no duplications
+            if (cityIndex === -1) {
+                this.cityData.unshift(resp.data);
+
+            } else {
+                this.cityData.splice(cityIndex, 1)
+                this.cityData.unshift(resp.data);
+            }
+
             return resp.status;
         } catch (error) {
             return error;
@@ -31,8 +50,17 @@ export class Model {
 
     }
 
-    async removeCity() {
-        //which sends a DELETE request to the /city delete route on your server and update the cityData array
+    async removeCity(cityName) {
+        try {
+            const resp = await axios.delete(`city/${cityName.replace(' ', '-')}`);
+            const cityIndex = this.cityData.findIndex(c => c.name === resp.data.name);
+
+            this.cityData.splice(cityIndex, 1)
+
+            return resp.status;
+        } catch (error) {
+            return error;
+        }
 
     }
 }
