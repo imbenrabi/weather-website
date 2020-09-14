@@ -1,10 +1,10 @@
 export class Renderer {
     getCityElement(city) {
         if (city._id) {
-            const imgHtml = `<img src="${city.conditionPic}">`
+            const imgHtml = `<img src="${city.conditionPic}" width="15%">`
 
             const element =
-                `<li lass="list-group-item list-group-item-dark" data-id=${city.id}>
+                `<li class="list-group-item list-group-item-dark" data-id=${city._id}>
                     ${imgHtml}
                     <span>
                         ${city.name.split(',')[0]}, ${city.temperature}C, ${city.condition}
@@ -15,13 +15,13 @@ export class Renderer {
             return element;
 
         } else {
-            const imgHtml = `<img src="${city.conditionPic}">`
+            const imgHtml = `<img src="${city.conditionPic}" width="15%">`
 
             const element =
-                `<li lass="list-group-item list-group-item-dark" data-id=${city.searchQuery}>
+                `<li class="list-group-item list-group-item-dark" data-id=${city.searchQuery}>
                     ${imgHtml}
                     <span>
-                        ${city.name} ${city.temp}C, ${condition}
+                    ${city.name.split(',')[0]}, ${city.temperature}C, ${city.condition}
                     </span>
                     <button type="button" class="btn btn-light add-btn">&#43;</button>
                 </li>`;
@@ -32,7 +32,6 @@ export class Renderer {
     }
 
     renderData(cities) {
-        console.log(cities);
         $('.list-group').empty();
 
         cities.forEach((c) => {

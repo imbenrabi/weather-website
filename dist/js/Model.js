@@ -22,6 +22,7 @@ export class Model {
         try {
             const resp = await axios.get(`city/${cityName}`);
 
+            this.cityData.unshift(resp.data);
             return resp.data;
 
         } catch (error) {

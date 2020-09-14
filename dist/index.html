@@ -5,42 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Weather</title>
+    <title>Weather Stack</title>
 </head>
 
 <body>
-    <div class="card text-white bg-dark mb-3" style="width: 100vw; height: 100vh;">
+    <div class="card text-white bg-dark mb-3" style="width: 100%; height: 100vh; overflow-y: auto;">
         <img src="./assets/background.png" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">My Weather Stack</h5>
+            <h5 class="card-title">Weather Stack</h5>
             <p class="card-text">Search any location for its current weather.</p>
             <p>Press "+" to add it to your stack and "-" to remove.</p>
             <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Location</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input"
+                <input type="text" id="city-name-input" class="form-control" aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-sm">
             </div>
-            <button type="button" id="get-weather-btn" class="btn btn-light">Get Weather</button>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item list-group-item-dark">
-                <img src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png"
-                    alt="">
-                <span>
-                    Cras justo odio
+            <button type="button" id="get-weather-btn" class="btn btn-light" style="margin-top: 0px;">Get
+                Weather</button>
 
-                </span>
-                <button type="button" class="btn btn-light">save</button>
-            </li>
-            <li class="list-group-item list-group-item-dark">Dapibus ac facilisis in</li>
-            <li class="list-group-item list-group-item-dark">Vestibulum at eros</li>
-        </ul>
-        <div class="card-body">
-            <!-- <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a> -->
+
+            <ul class="list-group list-group-flush" style="overflow: scroll; margin-top: 5px;">
+                <li class="list-group-item list-group-item-dark">
+                    <img src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png"
+                        alt="">
+                    <span>
+                        Cras justo odio
+
+                    </span>
+                    <button type="button" class="btn btn-light">save</button>
+                </li>
+                <li class="list-group-item list-group-item-dark">Dapibus ac facilisis in</li>
+                <li class="list-group-item list-group-item-dark">Vestibulum at eros</li>
+            </ul>
+
         </div>
+        <!-- <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div> -->
     </div>
 
 
