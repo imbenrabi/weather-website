@@ -51,27 +51,18 @@ import "../dist/css/style.scss"
     }
 
     loadPage();
+    setInterval(async () => {
+        try {
+            await model.refreshTemps();
+            renderer.renderData(model.cityData);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }, 900000);
 
     $getWeatherhBtn.on('click', handleSearch);
     $('.list-group').on('click', '.add-btn', handleAddCity);
     $('.list-group').on('click', '.remove-btn', handleRemoveCity);
-
-
-    // await model.saveCity({
-    //     "name": "Ashdod, Southern District, Israel",
-    //     "temperature": 30,
-    //     "feelsLike": 34,
-    //     "condition": "Partly cloudy",
-    //     "conditionPic": "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png",
-    //     "searchQuery": "ashdod"
-    // })
-    // const cityData = await model.getCityData('tel aviv');
-    // console.log(cityData);
-    // console.log('1st:' + renderer, model);
-    // await model.removeCity('tel aviv')
-    // console.log('2nd:' + renderer, model);
-    // console.log(model.cityData);
-
-
 
 })()

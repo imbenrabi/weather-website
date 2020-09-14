@@ -6,6 +6,15 @@ export class Model {
         this.cityData = []
     }
 
+    async refreshTemps() {
+        try {
+            this.cityData.forEach((c) => this.getCityData(c.searchQuery, true))
+
+        } catch (error) {
+            return error;
+        }
+    }
+
     async getDataFromDB() {
         try {
             const resp = await axios.get('/cities');
@@ -18,15 +27,19 @@ export class Model {
         }
     }
 
-    async getCityData(cityName) {
+    async getCityData(cityName, auto = false) {
         try {
             const resp = await axios.get(`city/${cityName}`);
 
-            this.cityData.unshift(resp.data);
-            return resp.data;
+            if (auto === false) {
+                this.cityData.unshift(resp.data);
+                return resp.data;
+            } else {
+                await this.saveCity(resp.data);
+            }
 
         } catch (error) {
-            return error
+            return error;
         }
 
     }

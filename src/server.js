@@ -6,7 +6,6 @@ const router = require('./routes/api');
 
 const distPath = path.join(__dirname, '../dist');
 
-
 const port = process.env.PORT;
 const app = express();
 
