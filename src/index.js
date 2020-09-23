@@ -37,7 +37,8 @@ import "../dist/css/style.scss"
 
     }
 
-    const handleRemoveCity = async function () {
+    const handleRemoveCity = async function (e) {
+        e.preventDefault()
         try {
             const id = $(this).closest('.list-group-item').data().id;
             const cityName = model.cityData.find(c => c._id === id).searchQuery;
