@@ -13,6 +13,6 @@
 
 ## App screenshots
 <h1 align="center">
-    <img src="./screenshots/s_0.png" width="80"/>
-    <img src="./screenshots/s_1.png" width="80"/>
+    <img src="./screenshots/s_0.png" width="256"/>
+    <img src="./screenshots/s_1.png" width="256"/>
 </h1>
